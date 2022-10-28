@@ -2,7 +2,7 @@
 
 If you want the website source, there are two ways:
 
-1. git clone with 'git clone https://github.com/aneeshlingala/aneeshlingala.github.io'
+1. git clone with "git clone https://github.com/aneeshlingala/aneeshlingala.github.io"
 
-2. Going to https://github.com/aneeshlingala/aneeshlingala.github.io and click on the "Code" button, after that, then click on "Download ZIP", then extract the ZIP file, and there you go.
+2. Going to "https://github.com/aneeshlingala/aneeshlingala.github.io" and click on the "Code" button, after that, then click on "Download ZIP", then extract the ZIP file, and there you go.
 
