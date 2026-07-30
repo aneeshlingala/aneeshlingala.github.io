@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aneesh Lingala — Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        // Runs before the page paints, so the site never flashes the wrong
+        // theme for a frame. Remembers your choice; otherwise follows the
+        // system/browser preference.
+        (function () {
+            var saved = localStorage.getItem('theme');
+            var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+<body>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <button class="theme-toggle interactive" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle light/dark theme">🌙</button>
+
+    <div class="container">
+        <header>
+            <img src="https://github.com/aneeshlingala.png" alt="Aneesh Lingala Profile Picture" class="profile-pfp interactive">
+            <div>
+                <h1>Aneesh Lingala</h1>
+                <p class="bio">North Creek High School · Class of 2030 | Robotics, Linux Systems & AI Engineering.</p>
+            </div>
+        </header>
+
+        <div class="section-title">Experience & Leadership</div>
+        <div class="experience-list" id="experienceList">
+            <p class="empty-note">Loading…</p>
+        </div>
+
+        <div class="section-title">Projects & Builds</div>
+        <div class="filters" id="filters">
+            <button class="filter-btn interactive active" data-filter="all">All</button>
+            <button class="filter-btn interactive" data-filter="Robotics & Vision">Robotics & Vision</button>
+            <button class="filter-btn interactive" data-filter="Linux & Systems">Linux & Systems</button>
+            <button class="filter-btn interactive" data-filter="Tools & Software">Tools & Software</button>
+            <button class="filter-btn interactive" data-filter="Kernel & Firmware">Kernel & Firmware</button>
+        </div>
+
+        <div class="project-list" id="projects">
+            <p class="empty-note">Loading…</p>
+        </div>
+
+        <div class="section-title">Contact</div>
+        <div class="contact-row">
+            <a href="mailto:aneeshlingala@hotmail.com" class="contact-pill interactive">✉️ aneeshlingala@hotmail.com</a>
+            <a href="https://github.com/aneeshlingala" target="_blank" class="contact-pill interactive">GitHub ↗</a>
+            <button type="button" class="contact-pill interactive" id="discordPill" onclick="copyDiscord()">Discord: aneesh61</button>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>© <span id="year"></span> Aneesh Lingala</p>
+    </footer>
+
+    <div class="toast" id="toast" hidden>
+        <span id="toastText"></span>
+        <button class="toast-close interactive" id="toastClose">✕</button>
+    </div>
+
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script type="module" src="js/site.js"></script>
+</body>
+</html>

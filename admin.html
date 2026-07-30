@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Aneesh Lingala</title>
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- ===================== LOGIN ===================== -->
+  <div class="auth-screen" id="authScreen">
+    <div class="login-box">
+      <h2>Sign in</h2>
+      <p class="auth-error" id="authError"></p>
+      <form id="loginForm">
+        <label for="email">Email</label>
+        <input type="email" id="email" required autocomplete="username">
+        <label for="password">Password</label>
+        <input type="password" id="password" required autocomplete="current-password">
+        <button type="submit">Unlock</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================== DASHBOARD ===================== -->
+  <div id="dashboard" class="hidden">
+    <header class="admin-topbar">
+      <h1>Site control panel</h1>
+      <nav class="admin-topnav">
+        <a href="index.html" target="_blank">View live site ↗</a>
+        <button type="button" id="logoutBtn">Log out</button>
+      </nav>
+    </header>
+
+    <main class="admin-main">
+
+      <!-- ---------------- STARTER DATA ---------------- -->
+      <section class="admin-section" id="starterSection">
+        <h2>Starter data</h2>
+        <p class="admin-hint">One-time button to load your real projects, experience, and the popup text into Firestore. Safe to skip if you'd rather add everything by hand. Also safe to re-run later, it only fills in collections that are still empty.</p>
+        <button type="button" class="btn-primary" id="seedBtn">Load starter data</button>
+        <span id="seedStatus" style="margin-left: 0.75rem; color: var(--text-muted); font-size: 0.85rem;"></span>
+      </section>
+
+      <section class="admin-section" id="importSection">
+        <h2>Replace project list</h2>
+        <p class="admin-hint">Loads the full 37-project list (adds back Kernel &amp; Firmware). This <strong>deletes every existing project doc first</strong>, then adds this list fresh. Doesn't touch experience or the popup.</p>
+        <button type="button" class="btn-ghost" id="importBtn" style="border-color: var(--danger); color: var(--danger);">Replace all projects with full list</button>
+        <span id="importStatus" style="margin-left: 0.75rem; color: var(--text-muted); font-size: 0.85rem;"></span>
+      </section>
+
+      <!-- ---------------- PROJECTS ---------------- -->
+      <section class="admin-section">
+        <h2>Projects <span class="admin-count" id="projectCount">0</span></h2>
+        <p class="admin-hint">These populate the Projects grid on the live site. Lower "order" numbers show first.</p>
+
+        <form class="admin-form" id="projectForm">
+          <input type="hidden" id="projectId">
+          <div class="admin-grid">
+            <label>Title <input type="text" id="projectTitle" required maxlength="80"></label>
+            <label>Link <input type="url" id="projectLink" placeholder="https://github.com/aneeshlingala/..."></label>
+            <label>Category
+              <select id="projectCategory">
+                <option>Robotics & Vision</option>
+                <option>Linux & Systems</option>
+                <option>Tools & Software</option>
+                <option>Kernel & Firmware</option>
+              </select>
+            </label>
+            <label>Order <input type="number" id="projectOrder" value="0"></label>
+          </div>
+          <label class="admin-full">Description
+            <textarea id="projectDescription" rows="3" maxlength="280" required></textarea>
+          </label>
+          <div class="admin-form-actions">
+            <button type="submit" class="btn-primary">Save project</button>
+            <button type="button" class="btn-ghost" id="projectCancel">Clear form</button>
+          </div>
+        </form>
+
+        <div class="table-scroll">
+          <table class="table">
+            <thead><tr><th>Title</th><th>Category</th><th>Order</th><th></th></tr></thead>
+            <tbody id="projectRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ---------------- EXPERIENCE ---------------- -->
+      <section class="admin-section">
+        <h2>Experience & Leadership <span class="admin-count" id="experienceCount">0</span></h2>
+        <p class="admin-hint">These populate the Experience section, in "order" ascending.</p>
+
+        <form class="admin-form" id="experienceForm">
+          <input type="hidden" id="experienceId">
+          <div class="admin-grid">
+            <label>Role <input type="text" id="experienceRole" required maxlength="80"></label>
+            <label>Organization <input type="text" id="experienceOrg" required maxlength="100"></label>
+            <label>Timeframe <input type="text" id="experienceTimeframe" placeholder="2026 - Present"></label>
+            <label>Order <input type="number" id="experienceOrder" value="0"></label>
+          </div>
+          <label class="admin-full">Description
+            <textarea id="experienceDescription" rows="2" maxlength="280"></textarea>
+          </label>
+          <div class="admin-form-actions">
+            <button type="submit" class="btn-primary">Save entry</button>
+            <button type="button" class="btn-ghost" id="experienceCancel">Clear form</button>
+          </div>
+        </form>
+
+        <div class="table-scroll">
+          <table class="table">
+            <thead><tr><th>Role</th><th>Organization</th><th>Order</th><th></th></tr></thead>
+            <tbody id="experienceRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ---------------- POPUP ---------------- -->
+      <section class="admin-section">
+        <h2>Announcement popup</h2>
+        <p class="admin-hint">The small corner notification that shows on the live site.</p>
+        <form class="admin-form" id="popupForm">
+          <label class="admin-full">Message
+            <textarea id="popupText" rows="2" maxlength="160"></textarea>
+          </label>
+          <label class="admin-checkbox">
+            <input type="checkbox" id="popupActive">
+            Active (show on site)
+          </label>
+          <div class="admin-form-actions" style="margin-top: 1rem;">
+            <button type="submit" class="btn-primary">Save popup</button>
+          </div>
+        </form>
+      </section>
+
+    </main>
+  </div>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>
